@@ -1,2 +1,21 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Gradle files
+.gradle/
+build/
+# Temporary files
+*.tmp
+*.temp
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Other files
+*.jar
+*.war
+*.ear
+*.db
+
+# Local environment files
+.env
