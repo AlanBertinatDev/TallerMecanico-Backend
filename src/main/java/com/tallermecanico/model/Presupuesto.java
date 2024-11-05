@@ -13,24 +13,31 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "presupuestos")
+@Table(name = "presupuesto")
 public class Presupuesto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha", nullable = false)
+    @Column(name = "fecha_creacion", nullable = false)
     private Date fecha;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
+    @JoinColumn(name = "cliente_id", nullable = true)
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "vehiculo_id", nullable = true)
+    private Vehiculo vehiculo;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "presupuesto_id")
     private List<Servicio> servicios;
 
-    @Column(name = "total", nullable = false)
-    private Double total;
+    @Column(name = "total_estimado", nullable = false)
+    private Double totalEstimado;
+
+    @Column(name = "estado", nullable = false, length = 50)
+    private String estado;
 }
 

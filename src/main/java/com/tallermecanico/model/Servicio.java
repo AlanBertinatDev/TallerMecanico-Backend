@@ -32,7 +32,7 @@ public class Servicio {
     )
     private List<Producto> repuestosUsados;
 
-    @Column(name = "costo_servicio", nullable = false)
+    @Column(name = "costo_mano_de_obra", nullable = false)
     private Double costoManoDeObra;
 
     @Column(name = "fecha_servicio", nullable = false)
