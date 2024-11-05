@@ -1,20 +1,20 @@
 package com.tallermecanico.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
-@Table(name = "producto")
-public class Producto {
-
+@Table(name = "clientes")
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,12 +22,14 @@ public class Producto {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "precio_compra", nullable = false)
-    private Double precioCompra;
+    @Column(name = "contacto", nullable = false)
+    private String contacto;
 
-    @Column(name = "precio_venta", nullable = false)
-    private Double precioVenta;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Vehiculo> vehiculos;
 
-    @Column(name = "stock", nullable = false)
-    private Integer stock;
+    @OneToMany(mappedBy = "cliente")
+    private List<Orden> ordenes;
 }
+
+

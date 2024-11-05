@@ -10,10 +10,11 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
+@Table(name = "servicio")
 public class Servicio {
 
     @Id
@@ -35,9 +36,10 @@ public class Servicio {
     private Double costoManoDeObra;
 
     @Column(name = "fecha_servicio", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date fechaServicio;
 
-    @ManyToOne // Cambiado a ManyToOne para reflejar que un servicio pertenece a una orden
+    @ManyToOne
     @JoinColumn(name = "orden_id", nullable = false)
     private Orden orden;
 }
