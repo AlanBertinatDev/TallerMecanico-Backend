@@ -21,6 +21,7 @@ public class Orden {
     private Long id;
 
     @Column(name = "fecha_creacion", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
 
     @Column(name = "observaciones")
@@ -35,7 +36,7 @@ public class Orden {
     private Vehiculo vehiculo;
 
     @ManyToOne
-    @JoinColumn(name = "presupuesto_id")
+    @JoinColumn(name = "presupuesto_id", nullable = true) // El presupuesto es opcional
     private Presupuesto presupuesto;
 
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -55,4 +56,11 @@ public class Orden {
 
     @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Producto> productos;
+
+    @PrePersist
+    public void prePersist() {
+        if (fechaCreacion == null) {
+            fechaCreacion = new Date(); // Asigna la fecha de creación si no está presente
+        }
+    }
 }

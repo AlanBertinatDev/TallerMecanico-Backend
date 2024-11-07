@@ -27,13 +27,9 @@ public class Cliente {
     @Column(name = "contacto", nullable = false)
     private String contacto;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Vehiculo> vehiculos;
-
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Orden> ordenes;
-
 }
 
 

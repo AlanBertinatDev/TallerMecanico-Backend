@@ -23,8 +23,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     @EntityGraph(attributePaths = {"vehiculo"})
-    public List<Cliente> getAllClientes() {
-        return clienteRepository.findAll();
+    public List<Cliente> findAllClientsWithVehicles() {
+        return clienteRepository.findAllWithVehiculos();
     }
 
     @Override

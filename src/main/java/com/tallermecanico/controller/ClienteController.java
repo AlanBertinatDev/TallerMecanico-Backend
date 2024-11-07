@@ -24,7 +24,7 @@ public class ClienteController {
 
     @GetMapping
     public List<Cliente> getAllClientes() {
-        return clienteService.getAllClientes();
+        return clienteService.findAllClientsWithVehicles();
     }
 
     @GetMapping("/{id}")

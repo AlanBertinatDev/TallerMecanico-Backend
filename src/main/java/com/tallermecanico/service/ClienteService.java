@@ -7,7 +7,7 @@ import java.util.List;
 public interface ClienteService {
 
     Cliente crearCliente(Cliente cliente);
-    List<Cliente> getAllClientes();
+    List<Cliente> findAllClientsWithVehicles();
     Cliente obtenerClientePorId(Long id);
     void eliminarCliente(Long id);
 }
