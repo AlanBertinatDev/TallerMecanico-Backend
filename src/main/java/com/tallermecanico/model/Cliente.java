@@ -1,5 +1,7 @@
 package com.tallermecanico.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,10 +28,13 @@ public class Cliente {
     private String contacto;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Vehiculo> vehiculos;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Orden> ordenes;
+
 }
+
 
 

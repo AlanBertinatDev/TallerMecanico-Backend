@@ -1,4 +1,5 @@
 package com.tallermecanico.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "vehiculos")
+@Table(name = "vehiculo")
 public class Vehiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +31,11 @@ public class Vehiculo {
     @Column(name = "matricula", nullable = false)
     private String matricula;
 
-    @Column(name = "kilometros", nullable = true)
+    @Column(name = "kilometraje", nullable = true)
     private Integer kilometros;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonBackReference
     private Cliente cliente;
 }

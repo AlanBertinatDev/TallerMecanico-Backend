@@ -4,6 +4,7 @@ import com.tallermecanico.model.Cliente;
 import com.tallermecanico.repository.ClienteRepository;
 import com.tallermecanico.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    @EntityGraph(attributePaths = {"vehiculo"})
     public List<Cliente> getAllClientes() {
         return clienteRepository.findAll();
     }
