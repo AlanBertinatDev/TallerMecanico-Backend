@@ -9,5 +9,7 @@ public interface ClienteService {
     Cliente crearCliente(Cliente cliente);
     List<Cliente> findAllClientsWithVehicles();
     Cliente obtenerClientePorId(Long id);
+
+    Cliente updateCliente(Long id, Cliente cliente);
     void eliminarCliente(Long id);
 }
