@@ -19,6 +19,9 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="descripcion", nullable = false)
+    private String descripcion;
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
@@ -31,8 +34,7 @@ public class Producto {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
-    @ManyToOne
-    @JoinColumn(name = "orden_id") // Nombre de la columna en la base de datos
-    private Orden orden; // Este es el campo necesario para la relación bidireccional
+    @Column(name = "orden_id")
+    private Long orden; // Este es el campo necesario para la relación bidireccional
 
 }
