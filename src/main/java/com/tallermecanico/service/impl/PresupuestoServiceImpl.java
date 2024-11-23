@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PresupuestoServiceImpl implements PresupuestoService {
@@ -32,5 +33,10 @@ public class PresupuestoServiceImpl implements PresupuestoService {
     @Override
     public void eliminarPresupuesto(Long id) {
         presupuestoRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Presupuesto> findByID(Long idPresupuesto){
+        return presupuestoRepository.findById(idPresupuesto);
     }
 }
