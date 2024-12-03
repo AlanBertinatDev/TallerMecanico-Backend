@@ -1,5 +1,6 @@
 package com.tallermecanico.controller;
 
+import com.tallermecanico.dto.PresupuestoDataDTO;
 import com.tallermecanico.model.Presupuesto;
 import com.tallermecanico.service.PresupuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,6 @@ public class PresupuestoController {
         return ResponseEntity.ok("Estado actualizado");
     }
 
-
-
     @GetMapping
     public List<Presupuesto> getAllPresupuestos() {
         return presupuestoService.getAllPresupuestos();
@@ -65,5 +64,11 @@ public class PresupuestoController {
     public ResponseEntity<Void> eliminarPresupuesto(@PathVariable Long id) {
         presupuestoService.eliminarPresupuesto(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/data")
+    public ResponseEntity<PresupuestoDataDTO> obtenerDatosParaPresupuestos() {
+        PresupuestoDataDTO data = presupuestoService.obtenerDatosCombinados();
+        return ResponseEntity.ok(data);
     }
 }

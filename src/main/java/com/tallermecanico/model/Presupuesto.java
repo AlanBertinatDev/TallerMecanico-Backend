@@ -32,6 +32,9 @@ public class Presupuesto {
     @Column(name = "estado", nullable = false)
     private Estado estado = Estado.PENDIENTE;
 
+    @OneToMany(mappedBy = "presupuesto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PresupuestoClienteVehiculo> clienteVehiculoRelaciones;
+
     public enum Estado {
         PENDIENTE,
         CANCELADO,
