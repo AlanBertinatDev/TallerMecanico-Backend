@@ -20,24 +20,25 @@ public class Presupuesto {
     private Long id;
 
     @Column(name = "fecha_creacion", nullable = false)
-    private Date fecha;
+    private Date fecha_creacion;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = true)
-    private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "vehiculo_id", nullable = true)
-    private Vehiculo vehiculo;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "presupuesto_id")
-    private List<Servicio> servicios;
+    @Column(name ="fecha_realizado", nullable = false)
+    private Date fecha_realizado;
 
     @Column(name = "total_estimado", nullable = false)
-    private Double totalEstimado;
+    private Double total_estimado;
 
-    @Column(name = "estado", nullable = false, length = 50)
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", nullable = false)
+    private Estado estado = Estado.PENDIENTE;
+
+    @OneToMany(mappedBy = "presupuesto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PresupuestoClienteVehiculo> clienteVehiculoRelaciones;
+
+    public enum Estado {
+        PENDIENTE,
+        CANCELADO,
+        REALIZADO
+    }
 }
 
